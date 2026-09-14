@@ -26,17 +26,16 @@ impl Module for Files {
             if entry.as_str().starts_with("/.hemtt") {
                 continue;
             }
-            if entry.metadata()?.file_type == vfs::VfsFileType::Directory {
-                continue;
-            }
-            if !entry.exists()? {
-                continue;
-            }
-
             if !globs
                 .iter()
                 .any(|pat| pat.matches_with(entry.as_str(), glob_options))
             {
+                continue;
+            }
+            if entry.metadata()?.file_type == vfs::VfsFileType::Directory {
+                continue;
+            }
+            if !entry.exists()? {
                 continue;
             }
 

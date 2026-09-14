@@ -16,7 +16,7 @@ impl Module for BOMCheck {
 
     fn check(&self, ctx: &Context) -> Result<Report, crate::Error> {
         fn files_to_check(root: &PathBuf) -> Vec<PathBuf> {
-            const IGNORED_EXTENSIONS: [&str; 4] = ["p3d", "rtm", "bin", "paa"];
+            const IGNORED_EXTENSIONS: [&str; 8] = ["p3d", "rtm", "bin", "paa", "ogg", "wss", "wav", "tga"];
             walkdir::WalkDir::new(root)
                 .into_iter()
                 .filter_map(std::result::Result::ok)
